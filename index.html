@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="intro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05070f">
+<title>Happy Birthday, Sivani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#f6f1e7;--dim:rgba(246,241,231,.66);--gold:#f2b56b}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
+html.intro,html.intro body{overflow:hidden}
+body{background:#05070f;color:var(--ink);font-family:Inter,system-ui,sans-serif;font-weight:300;overflow-x:hidden;max-width:100%}
+
+/* fixed layers */
+#sky{position:fixed;inset:0;z-index:-5;background:#05070f}
+#veil{position:fixed;inset:0;z-index:-4;background:linear-gradient(180deg,rgba(8,8,20,.5),rgba(8,8,20,.22) 60%,transparent)}
+#sun{position:fixed;left:0;right:0;bottom:-30vh;bottom:-30svh;height:75vh;height:75svh;z-index:-3;opacity:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(255,196,120,.6),rgba(255,150,90,.2) 45%,transparent 72%)}
+#stars{position:fixed;inset:0;z-index:-2;width:100%;height:100%}
+#hz{position:fixed;left:0;right:0;bottom:0;width:100%;height:20vh;height:20svh;min-height:90px;z-index:-1;opacity:0;pointer-events:none}
+#hz .far{fill:rgba(38,26,58,.5)}
+#hz .near{fill:rgba(14,10,28,.72)}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:8;pointer-events:none}
+#jet{position:fixed;left:-22px;top:-8px;width:44px;height:16.5px;z-index:9;opacity:0;pointer-events:none;fill:#fff;
+  will-change:transform;filter:drop-shadow(0 0 6px rgba(255,214,160,.6))}
+#path{position:fixed;left:0;bottom:0;height:2px;width:0;background:linear-gradient(90deg,transparent,var(--gold));z-index:7}
+#path::after{content:"";position:absolute;right:-3px;top:-2px;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 10px 2px var(--gold)}
+
+/* scroll cue + wish caption */
+#ind{position:fixed;left:0;right:0;bottom:calc(1.3rem + env(safe-area-inset-bottom,0px));z-index:7;text-align:center;
+  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--dim);opacity:0;
+  transition:opacity 1.2s ease;pointer-events:none;text-shadow:0 1px 14px rgba(6,6,16,.7)}
+#ind.on{opacity:.85}
+#ind.off{opacity:0}
+#ind i{display:inline-block;font-style:normal;margin-left:.4em;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+#wish{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 11vh);top:calc(env(safe-area-inset-top,0px) + 11svh);
+  z-index:9;text-align:center;pointer-events:none;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;
+  font-size:clamp(1.15rem,3.6vw,1.6rem);letter-spacing:.04em;opacity:0;transition:opacity 1s ease;text-shadow:0 2px 20px rgba(6,6,16,.7)}
+#wish.on{opacity:.92}
+
+/* content */
+section{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:max(10vh,4.5rem) 8vw}
+.eyebrow{letter-spacing:.38em;text-indent:.38em;text-transform:uppercase;font-size:.7rem;color:var(--dim);margin-bottom:1.6rem}
+.tag{font-size:.68rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(1.9rem,7vw,4.2rem);letter-spacing:.02em;text-shadow:0 2px 30px rgba(8,6,20,.5)}
+h1 em{display:block;width:fit-content;margin:.3rem auto 0;padding:.04em .12em .1em;font-style:italic;font-weight:500;
+  font-size:clamp(3.6rem,19vw,9.5rem);line-height:1.05;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) no-repeat,linear-gradient(120deg,#fff 20%,var(--gold));
+  background-size:250% 100%,100% 100%;background-position:100% 0,0 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+h1 em.shine{animation:sweep 1.7s ease-in-out}
+@keyframes sweep{from{background-position:100% 0,0 0}to{background-position:0% 0,0 0}}
+p.msg{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.35rem,4.2vw,2.1rem);line-height:1.6;max-width:30ch;font-weight:300;text-shadow:0 2px 28px rgba(8,6,20,.55)}
+h2.fin{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;text-transform:uppercase;letter-spacing:.18em;line-height:1.5;
+  font-size:clamp(1.25rem,5vw,2.4rem);max-width:22ch;text-shadow:0 2px 28px rgba(8,6,20,.55)}
+.sign{margin-top:1.8rem;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.2rem,3.6vw,1.6rem);color:var(--dim)}
+.cta{margin-top:2.6rem}
+.cue{margin-top:1.4rem;font-size:.6rem;letter-spacing:.36em;text-indent:.36em;text-transform:uppercase;color:var(--dim)}
+.cue span{display:inline-block;animation:breathe 2.8s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.35}50%{opacity:.95}}
+button{min-height:48px;background:rgba(246,241,231,.03);border:1px solid rgba(246,241,231,.42);color:var(--ink);padding:.95rem 2.6rem;
+  letter-spacing:.28em;text-transform:uppercase;font:inherit;font-size:.7rem;cursor:pointer;border-radius:999px;
+  transition:background .35s,letter-spacing .35s,transform .2s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:hover{background:rgba(246,241,231,.1);letter-spacing:.34em}
+button:active{transform:scale(.97)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+button.spark{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 .2em;border:0;background:none;
+  color:var(--gold);font-size:.8em;letter-spacing:0;border-radius:8px;vertical-align:middle;animation:tw 2.8s ease-in-out infinite}
+button.spark:hover{background:none;letter-spacing:0}
+@keyframes tw{0%,100%{opacity:.5}50%{opacity:1}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 1.3s ease,transform 1.3s ease}
+.reveal.in{opacity:1;transform:none}
+.hero .reveal.spent{opacity:0;visibility:hidden;transform:translateY(-8px);pointer-events:none;
+  transition:opacity .7s ease,transform .7s ease,visibility 0s .7s}
+
+@media(max-width:480px){
+  #ind{font-size:.56rem;letter-spacing:.24em}
+  .eyebrow{font-size:.64rem;letter-spacing:.3em}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+  #jet,#fx{display:none}
+}
+</style>
+</head>
+<body>
+<div id="sky"></div><div id="veil"></div><div id="sun"></div>
+<canvas id="stars"></canvas>
+<svg id="hz" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+  <path class="far" d="M0 120 C120 96 220 110 330 92 S560 70 700 96 S930 128 1060 100 S1300 74 1440 98 L1440 200 L0 200Z"/>
+  <path class="near" d="M0 160 C160 140 300 150 460 132 S760 120 900 146 S1200 170 1440 138 L1440 200 L0 200Z"/>
+</svg>
+<canvas id="fx"></canvas>
+<svg id="jet" viewBox="0 0 64 24" aria-hidden="true"><path d="M2 12 L30 9 L46 1 L50 1 L44 9 L60 10 L62 12 L60 14 L44 15 L50 23 L46 23 L30 15 Z"/></svg>
+<div id="path"></div>
+<div id="ind" aria-hidden="true">Scroll to continue<i>↓</i></div>
+<div id="wish" aria-hidden="true">Make a wish</div>
+
+<section class="hero" id="s1">
+  <div class="eyebrow reveal">Clear skies ahead</div>
+  <h1 class="reveal">Happy Birthday<em id="nm">Sivani</em></h1>
+  <div class="cta reveal"><button id="go" type="button">Begin</button></div>
+  <div class="cue reveal"><span>Tap to begin</span></div>
+</section>
+
+<section id="s2">
+  <div class="tag reveal">New Horizons</div>
+  <p class="msg reveal">Wishing you a wonderful birthday and a year full of new horizons, good people, and plenty of reasons to smile.</p>
+</section>
+
+<section id="s3">
+  <div class="tag reveal">The Year Ahead</div>
+  <p class="msg reveal">May the things you're working toward take you somewhere you're proud to reach.</p>
+</section>
+
+<section id="s4">
+  <h2 class="fin reveal">Happy Birthday, Sivani <button class="spark" type="button" aria-label="Fly a jet across the sky">✦</button></h2>
+  <div class="sign reveal">— Nambiraj</div>
+</section>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine=matchMedia('(pointer: fine)').matches;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const mix=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+const rgb=c=>`rgb(${c[0]|0},${c[1]|0},${c[2]|0})`;
+const root=document.documentElement;
+const sky=$('#sky'),sun=$('#sun'),hz=$('#hz'),path=$('#path'),jet=$('#jet'),ind=$('#ind'),wishEl=$('#wish'),nm=$('#nm');
+const cvs=$('#stars'),ctx=cvs.getContext('2d'),fx=$('#fx'),fctx=fx.getContext('2d');
+
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+root.style.scrollBehavior='auto';scrollTo(0,0);root.style.scrollBehavior='';
+
+/* ---------- state ---------- */
+let W=0,H=0,dpr=1,prog=0,started=false,kick=0,cleared=false;
+let pxn=0,pyn=0,cxn=0,cyn=0,mxp=-999,myp=-999,pTarget=0,pInf=0;
+let wishOn=false,wishVis=0,wishCool=0,wt;
+let flight=null,glow=null,trail=[],shots=[],fxDirty=false;
+
+/* ---------- sizing ---------- */
+function size(){
+  const w=innerWidth,h=innerHeight;
+  if(W&&w===W&&Math.abs(h-H)<160)return;   // ignore mobile URL-bar jitter
+  W=w;H=h;dpr=Math.min(devicePixelRatio||1,2);
+  for(const c of [cvs,fx]){c.width=Math.round(W*dpr);c.height=Math.round(H*dpr)}
+  cleared=false;
+  if(reduce)paintStars(0);
+}
+
+/* ---------- stars, constellation, wish star ---------- */
+const STAR_N=Math.min(140,Math.round(innerWidth*innerHeight/5000));
+const stars=Array.from({length:STAR_N},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.1+.3,p:Math.random()*6.28}));
+const N=[[.14,.74],[.27,.60],[.40,.63],[.52,.44],[.66,.36],[.78,.24],[.90,.13],[.44,.24]];
+const SEG=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[3,7]];
+const nodeSeg=[-1,0,1,2,3,4,5,6];
+
+function drawConst(a){
+  const q=clamp((prog-.1)/.42)*SEG.length;
+  ctx.lineWidth=.8;ctx.lineCap='round';
+  for(let i=0;i<SEG.length;i++){
+    const f=clamp(q-i);if(f<=0)break;
+    const A=N[SEG[i][0]],B=N[SEG[i][1]];
+    ctx.strokeStyle=`rgba(255,222,176,${(a*.45).toFixed(3)})`;
+    ctx.beginPath();ctx.moveTo(A[0]*W,A[1]*H);
+    ctx.lineTo((A[0]+(B[0]-A[0])*f)*W,(A[1]+(B[1]-A[1])*f)*H);ctx.stroke();
+  }
+  N.forEach((n,i)=>{
+    const lit=i===0?q>0:q>=nodeSeg[i]+1;
+    let al=lit?a:a*.3;
+    if(pInf>.02)al=Math.min(1,al+pInf*clamp(1-Math.hypot(n[0]*W-mxp,n[1]*H-myp)/90)*.5*a);
+    ctx.fillStyle=`rgba(255,240,215,${(al*.9).toFixed(3)})`;
+    ctx.beginPath();ctx.arc(n[0]*W,n[1]*H,1.5,0,6.283);ctx.fill();
+    ctx.strokeStyle=`rgba(255,222,176,${(al*.25).toFixed(3)})`;ctx.lineWidth=.8;
+    ctx.beginPath();ctx.arc(n[0]*W,n[1]*H,4,0,6.283);ctx.stroke();
+  });
+}
+
+function wishPos(){return[.17*W-cxn*8,.2*H-cyn*8]}
+function wishA(t){
+  const since=t-(wishCool-7000);
+  const dim=since<0?1:clamp((since-1200)/3500);
+  return wishVis*clamp(1-prog*1.5)*dim;
+}
+function hitWish(x,y){
+  const[wx,wy]=wishPos();
+  return wishA(performance.now())>.35&&Math.hypot(x-wx,y-wy)<32;
+}
+function drawWish(t){
+  const wa=wishA(t);if(wa<.01)return;
+  const[x,y]=wishPos(),ph=reduce?.4:(t/2400)%1;
+  const g=ctx.createRadialGradient(x,y,0,x,y,18);
+  g.addColorStop(0,`rgba(255,226,180,${(.55*wa).toFixed(3)})`);g.addColorStop(1,'rgba(255,226,180,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,18,0,6.283);ctx.fill();
+  ctx.strokeStyle=`rgba(255,244,225,${(.9*wa).toFixed(3)})`;ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(x-7,y);ctx.lineTo(x+7,y);ctx.moveTo(x,y-7);ctx.lineTo(x,y+7);ctx.stroke();
+  ctx.fillStyle=`rgba(255,250,240,${wa.toFixed(3)})`;ctx.beginPath();ctx.arc(x,y,1.8,0,6.283);ctx.fill();
+  ctx.strokeStyle=`rgba(255,222,176,${((1-ph)*.4*wa).toFixed(3)})`;ctx.lineWidth=.8;
+  ctx.beginPath();ctx.arc(x,y,5+ph*15,0,6.283);ctx.stroke();
+}
+
+function paintStars(t){
+  if(!W)return;
+  if(prog>.9){
+    if(!cleared){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);cleared=true}
+    return;
+  }
+  cleared=false;
+  cxn+=(pxn-cxn)*.05;cyn+=(pyn-cyn)*.05;pInf+=(pTarget-pInf)*.08;
+  wishVis+=((wishOn?1:0)-wishVis)*(reduce?1:.03);
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  const sy=scrollY;
+  for(const s of stars){
+    const a0=clamp(1-prog*1.35-s.y*prog*.9);if(a0<.01)continue;
+    let x=s.x*W-cxn*s.r*24-kick*s.r*18;
+    let y=s.y*H-cyn*s.r*24-sy*s.r*.03;y=((y%H)+H)%H;
+    let a=a0*(reduce?.7:.55+.45*Math.sin(t/1300+s.p)),r=s.r;
+    if(pInf>.02){
+      const dx=x-mxp,dy=y-myp,d=Math.hypot(dx,dy);
+      if(d<120){const f=pInf*(1-d/120);a=Math.min(1,a+f*.6*a0);r*=1+f*.9;x+=dx/(d||1)*f*7;y+=dy/(d||1)*f*7}
+    }
+    ctx.fillStyle=`rgba(255,255,255,${a.toFixed(3)})`;
+    ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();
+  }
+  const ca=clamp((prog-.1)/.15)*(1-clamp((prog-.6)/.2));
+  if(ca>.01)drawConst(ca);
+  drawWish(t);
+}
+
+/* ---------- jet, contrail, shooting stars ---------- */
+function startFlight(cfg){
+  flight=Object.assign({t0:performance.now(),midDone:false},cfg);
+  trail=[];jet.style.opacity=1;
+}
+function stepFlight(now){
+  if(!flight)return;
+  const f=flight,u=clamp((now-f.t0)/f.dur);
+  const[x,y]=f.P(u),[x2,y2]=f.P(Math.min(1,u+.012));
+  const bank=Math.sin(Math.PI*u);
+  const ang=Math.atan2(y2-y,x2-x)-.05*bank;
+  jet.style.transform=`translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) rotate(${ang.toFixed(3)}rad) scaleY(${(1-.36*bank).toFixed(3)})`;
+  const tx=x-Math.cos(ang)*20,ty=y-Math.sin(ang)*20;
+  if(u<1)trail.push({x:tx,y:ty,t:now});
+  glow={x:tx,y:ty,u};
+  kick=bank*(f.kick||0);
+  if(f.mid&&!f.midDone&&u>f.midAt){f.midDone=true;f.mid()}
+  if(u>=1){flight=null;glow=null;kick=0;jet.style.opacity=0}
+}
+function drawFx(now){
+  const busy=trail.length||shots.length||glow;
+  if(!busy){
+    if(fxDirty){fctx.setTransform(dpr,0,0,dpr,0,0);fctx.clearRect(0,0,W,H);fxDirty=false}
+    return;
+  }
+  fxDirty=true;
+  fctx.setTransform(dpr,0,0,dpr,0,0);fctx.clearRect(0,0,W,H);fctx.lineCap='round';
+  while(trail.length&&now-trail[0].t>1100)trail.shift();
+  const n=trail.length;
+  for(let pass=0;pass<2;pass++){
+    for(let i=1;i<n;i++){
+      const a=trail[i-1],b=trail[i],age=clamp(1-(now-b.t)/1100),k=i/n;
+      fctx.strokeStyle=`rgba(255,255,255,${((pass?.5:.1)*age*(.3+.7*k)).toFixed(3)})`;
+      fctx.lineWidth=pass?1+1.6*k:6+8*k;
+      fctx.beginPath();fctx.moveTo(a.x,a.y);fctx.lineTo(b.x,b.y);fctx.stroke();
+    }
+  }
+  if(glow&&glow.u<1){
+    const g=fctx.createRadialGradient(glow.x,glow.y,0,glow.x,glow.y,32),p=.35+.5*Math.min(1,glow.u*2);
+    g.addColorStop(0,`rgba(255,200,140,${p.toFixed(2)})`);g.addColorStop(1,'rgba(255,170,100,0)');
+    fctx.fillStyle=g;fctx.beginPath();fctx.arc(glow.x,glow.y,32,0,6.283);fctx.fill();
+  }
+  for(let i=shots.length-1;i>=0;i--){
+    const s=shots[i],u=clamp((now-s.t0)/s.dur);
+    if(u>=1){shots.splice(i,1);continue}
+    const e=1-Math.pow(1-u,2),dx=Math.cos(s.a),dy=Math.sin(s.a);
+    const hx=s.x+dx*s.D*e,hy=s.y+dy*s.D*e,L=140*(1-u*.5),tx=hx-dx*L,ty=hy-dy*L;
+    const al=u<.12?u/.12:1-(u-.12)/.88;
+    const g=fctx.createLinearGradient(hx,hy,tx,ty);
+    g.addColorStop(0,`rgba(255,244,225,${(.95*al).toFixed(3)})`);g.addColorStop(1,'rgba(255,222,176,0)');
+    fctx.strokeStyle=g;fctx.lineWidth=1.6;fctx.beginPath();fctx.moveTo(hx,hy);fctx.lineTo(tx,ty);fctx.stroke();
+    fctx.fillStyle=`rgba(255,250,240,${al.toFixed(3)})`;fctx.beginPath();fctx.arc(hx,hy,1.8,0,6.283);fctx.fill();
+  }
+}
+
+let last=0;
+function loop(t){
+  requestAnimationFrame(loop);
+  if(document.hidden)return;
+  const busy=flight||shots.length||trail.length;
+  if(!fine&&!busy&&t-last<33)return;
+  last=t;
+  stepFlight(t);paintStars(t);drawFx(t);
+}
+
+/* ---------- sky / scroll ---------- */
+const TOP=[[4,6,14],[9,16,40],[28,38,84],[62,60,114],[108,80,126],[138,92,122]];
+const BOT=[[4,6,14],[12,22,50],[38,50,98],[130,90,122],[232,142,92],[248,190,124]];
+const pal=(a,p)=>{const s=clamp(p)*(a.length-1),i=Math.min(a.length-2,Math.floor(s));return mix(a[i],a[i+1],s-i)};
+let ticking=false;
+function onScroll(){
+  ticking=false;
+  const max=Math.max(1,root.scrollHeight-innerHeight);
+  prog=clamp(scrollY/max);
+  const top=pal(TOP,prog),bot=pal(BOT,prog*1.08),mid=mix(top,bot,.55);
+  sky.style.background=`linear-gradient(180deg,${rgb(top)} 0%,${rgb(mid)} 62%,${rgb(bot)} 100%)`;
+  const k=clamp((prog-.4)/.5);
+  sun.style.opacity=k;sun.style.transform=`translateY(${((1-k)*22).toFixed(1)}vh)`;
+  hz.style.opacity=(clamp((prog-.5)/.3)*.95).toFixed(3);
+  path.style.width=(prog*100).toFixed(2)+'%';
+  ind.classList.toggle('off',prog>.82);
+  if(reduce)paintStars(0);
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+addEventListener('resize',()=>{size();onScroll()});
+
+/* ---------- reveal on scroll (sections after hero) ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    const sibs=[...e.target.parentElement.querySelectorAll('.reveal')];
+    e.target.style.transitionDelay=(sibs.indexOf(e.target)*.18)+'s';
+    e.target.classList.add('in');io.unobserve(e.target);
+  }
+}),{threshold:.35,rootMargin:'0px 0px -8% 0px'});
+$$('section:not(.hero) .reveal').forEach(el=>io.observe(el));
+
+/* ---------- interactions ---------- */
+function showWish(){
+  wishEl.classList.add('on');clearTimeout(wt);
+  wt=setTimeout(()=>wishEl.classList.remove('on'),2800);
+}
+function wishShot(){
+  const now=performance.now();
+  if(now<wishCool-2300)return;
+  wishCool=now+7000;
+  showWish();
+  if(reduce)return;
+  const[x,y]=wishPos();
+  shots.push({x,y,a:.4+Math.random()*.12,t0:now,dur:1300,D:Math.min(W*.75,560)});
+}
+function shine(){nm.classList.remove('shine');void nm.offsetWidth;nm.classList.add('shine')}
+
+const next=()=>$('#s2').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+function launch(){
+  if(reduce){next();return}
+  const rise=Math.min(.6*H,.62*W);
+  const P=u=>{const s=Math.pow(u,2.1);return[-.04*W+s*1.24*W,.74*H-rise*Math.pow(s,1.4)]};
+  startFlight({P,dur:3400,kick:1,mid:next,midAt:.42});
+}
+function flyby(){
+  if(flight||reduce)return;
+  const P=u=>{const e=u*.6+u*u*(3-2*u)*.4;return[-.06*W+e*1.16*W,.3*H-.07*H*e]};
+  startFlight({P,dur:3000,kick:0});
+}
+function begin(){
+  if(started)return;started=true;
+  root.classList.remove('intro');
+  $$('.hero .cta,.hero .cue').forEach(el=>{el.style.transitionDelay='';el.classList.add('spent')});
+  launch();
+  setTimeout(()=>ind.classList.add('on'),reduce?300:2000);
+  setTimeout(()=>{wishOn=true;if(reduce)paintStars(0)},reduce?300:2600);
+}
+
+document.addEventListener('click',e=>{
+  if(!started){begin();return}
+  const t=e.target;
+  if(t.closest&&t.closest('.spark')){flyby();return}
+  if(t.closest&&t.closest('#nm'))shine();
+  if(hitWish(e.clientX,e.clientY))wishShot();
+});
+addEventListener('wheel',e=>{if(!started&&e.deltaY>4)begin()},{passive:true});
+addEventListener('keydown',e=>{if(!started&&[' ','Enter','ArrowDown','PageDown'].includes(e.key))begin()});
+let ty0=null;
+addEventListener('touchstart',e=>{ty0=e.touches[0].clientY},{passive:true});
+addEventListener('touchmove',e=>{if(!started&&ty0!==null&&ty0-e.touches[0].clientY>40)begin()},{passive:true});
+
+/* pointer parallax */
+function point(e){
+  mxp=e.clientX;myp=e.clientY;
+  pxn=e.clientX/innerWidth-.5;pyn=e.clientY/innerHeight-.5;pTarget=1;
+}
+addEventListener('pointermove',e=>{
+  point(e);
+  if(e.pointerType==='mouse')root.style.cursor=hitWish(e.clientX,e.clientY)?'pointer':'';
+},{passive:true});
+addEventListener('pointerdown',point,{passive:true});
+addEventListener('pointerup',e=>{if(e.pointerType!=='mouse')pTarget=0},{passive:true});
+addEventListener('pointercancel',()=>{pTarget=0},{passive:true});
+document.addEventListener('mouseleave',()=>{pTarget=0});
+
+/* ---------- init ---------- */
+size();onScroll();
+setTimeout(()=>{
+  $$('.hero .reveal').forEach((el,i)=>{el.style.transitionDelay=(.1+i*.3)+'s';el.classList.add('in')});
+  if(!reduce)setTimeout(shine,1900);
+},60);
+if(!reduce)requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
